@@ -8,13 +8,13 @@ import com.hiveTown.Exception.HTWebConsoleException;
 
 public class UserAccountDAO extends SimpleJdbcDaoSupport{
 	
-	/** The check email id query. */
+
 	private static String checkEmailIdQuery = "select count(*) from USER_ACCOUNT "
 			+ " where EMAIL_ID=?";
 
 
 	
-	public int getUsersByEmail(String emailId) throws HTWebConsoleException
+	public int getUsersByEmail(String email) throws HTWebConsoleException
 	{
 		
 		int users = 0;
@@ -22,11 +22,11 @@ public class UserAccountDAO extends SimpleJdbcDaoSupport{
 		try
 		{
 			// security review comment
-			if ((null != emailId) && (emailId.trim().length() > 0))
+			if ((null != email) && (email.trim().length() > 0))
 			{
 				// executing the query
 				users = getJdbcTemplate().queryForInt(checkEmailIdQuery,
-						new Object[] { emailId });
+						new Object[] { email });
 
 				
 			}
